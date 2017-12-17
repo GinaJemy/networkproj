@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="networkproj.FXMLDocumentController">
+<children>
+      <Button fx:id="start" layoutX="209.0" layoutY="14.0" mnemonicParsing="false" onAction="#loginButtonPress" text="Start" />
+      <Button fx:id="stop" layoutX="281.0" layoutY="14.0" mnemonicParsing="false" text="Stop" />
+      <TableView fx:id="table" layoutX="-3.0" layoutY="69.0" prefHeight="284.0" prefWidth="1075.0">
+        <columns>
+          <TableColumn fx:id="no" prefWidth="75.0" text="No." />
+          <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="source" prefWidth="167.0" text="Source" />
+            <TableColumn fx:id="destination" minWidth="0.0" prefWidth="126.0" text="Destination" />
+            <TableColumn fx:id="protocole" minWidth="7.0" prefWidth="109.0" text="protocole" />
+            <TableColumn fx:id="lenght" prefWidth="125.0" text="Lenght" />
+            <TableColumn fx:id="info" prefWidth="397.0" text="Info" />
+        </columns>
+      </TableView>
+      <TreeView fx:id="tree" layoutX="-3.0" layoutY="354.0" prefHeight="206.0" prefWidth="1075.0" />
+      <TextField layoutX="511.0" layoutY="14.0" />
+      <Label layoutX="451.0" layoutY="19.0" prefHeight="21.0" prefWidth="45.0" text="Filter" />
+      <MenuButton fx:id="device" layoutX="42.0" layoutY="14.0" mnemonicParsing="false" text="choose device" />
+   </children>
+</AnchorPane>
