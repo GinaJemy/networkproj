@@ -18,7 +18,9 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
     @Override
     
     public void receivePacket(Packet packet) {
-        capturedPackets.add(packet);
+        IPPacket ippkt=(IPPacket)packet;
+        capturedPackets.add(ippkt);
+        
         
          System.out.println(packet.toString());
          System.out.println("header" + DatatypeConverter.printHexBinary(packet.header));
@@ -30,7 +32,6 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
             System.out.println(e.toString());
             if(packet instanceof IPPacket)
             {
-                IPPacket ippkt = (IPPacket)packet;
                 //not very useful
                 int p=ippkt.protocol;
                 String proto=protocoll[p];
