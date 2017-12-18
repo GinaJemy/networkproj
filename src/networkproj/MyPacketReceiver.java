@@ -14,17 +14,15 @@ import javax.xml.bind.DatatypeConverter;
  * @author Gina Salib
  */
 public class MyPacketReceiver implements PacketReceiver{
-static ArrayList<Packet> capturedPackets = new ArrayList<Packet>();
+//static ArrayList<Packet> capturedPackets = new ArrayList<Packet>();
 String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
     @Override
     
     public void receivePacket(Packet packet) {
-        IPPacket ippkt=(IPPacket)packet;
-         Platform.runLater(() ->  
-        Networkproj.packets.add(ippkt));
+        
          
         
-        
+       
          System.out.println(packet.toString());
          System.out.println("header" + DatatypeConverter.printHexBinary(packet.header));
          System.out.println("data" + DatatypeConverter.printHexBinary(packet.data));
@@ -35,6 +33,9 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
             System.out.println(e.toString());
             if(packet instanceof IPPacket)
             {
+                IPPacket ippkt=(IPPacket)packet;
+                 Platform.runLater(() ->  
+        FXMLDocumentController.packets.add(ippkt));
                 //not very useful
                 int p=ippkt.protocol;
                 
@@ -45,6 +46,12 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
                     System.out.println("TCP : "+tcppkt);
                     //http is tcp with dest port 80
                 }
+            }
+            else if(packet instanceof ARPPacket)
+            {
+                ARPPacket arppkt = (ARPPacket)packet;
+                DatalinkPacket dpkt= (DatalinkPacket)arppkt.datalink;
+                System.out.println(dpkt.toString());
             }
             
         }
