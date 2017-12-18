@@ -14,7 +14,6 @@ import javax.xml.bind.DatatypeConverter;
  * @author Gina Salib
  */
 public class MyPacketReceiver implements PacketReceiver{
-//static ArrayList<Packet> capturedPackets = new ArrayList<Packet>();
 String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
     @Override
     
@@ -36,7 +35,6 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
                 IPPacket ippkt=(IPPacket)packet;
                  Platform.runLater(() ->  
         FXMLDocumentController.packets.add(ippkt));
-                //not very useful
                 int p=ippkt.protocol;
                 
                 String proto=protocoll[p];
