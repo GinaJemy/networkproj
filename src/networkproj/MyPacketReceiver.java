@@ -14,14 +14,13 @@ import javax.xml.bind.DatatypeConverter;
  * @author Gina Salib
  */
 public class MyPacketReceiver implements PacketReceiver{
-static ArrayList<Packet> capturedPackets = new ArrayList<Packet>();
 String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
     @Override
     
     public void receivePacket(Packet packet) {
         IPPacket ippkt=(IPPacket)packet;
-         Platform.runLater(() ->  
-        Networkproj.packets.add(ippkt));
+        // Platform.runLater(() ->  
+        Networkproj.packets.add(ippkt);
          
         
         

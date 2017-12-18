@@ -26,19 +26,17 @@ public class FXMLDocumentController implements Initializable {
 
 
     // u have to make the type compatible with the one t7t  @FXML public TableColumn <IPPacket,Short> protocole;
-
-        Networkproj mypcap = new Networkproj();
+sniffingthread s =new sniffingthread();
      public void loginButtonPress(ActionEvent event)
  {
-     
-        mypcap.ListInterfaces();
-        mypcap.ChooseInterface();
-        mypcap.CapturePackets();
+     s.ListInterfaces();
+     s.ChooseInterface();
+        s.CapturePackets();
  
  }
      public void stopCapture(ActionEvent event)
      {
-         Networkproj.CaptureState=false;
+         sniffingthread.CaptureState=false;
      }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
