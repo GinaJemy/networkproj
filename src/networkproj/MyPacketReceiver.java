@@ -21,7 +21,7 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
     public void receivePacket(Packet packet) {
         IPPacket ippkt=(IPPacket)packet;
          Platform.runLater(() ->  
-        capturedPackets.add(ippkt));
+        Networkproj.packets.add(ippkt));
          
         
         

@@ -22,6 +22,10 @@ public class FXMLDocumentController implements Initializable {
        @FXML public TableView <IPPacket> table;
      public void loginButtonPress(ActionEvent event)
  {
+      Networkproj mypcap = new Networkproj();
+        mypcap.ListInterfaces();
+        mypcap.ChooseInterface();
+        mypcap.CapturePackets();
  
  }
     @Override
