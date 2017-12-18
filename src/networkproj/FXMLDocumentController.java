@@ -20,14 +20,19 @@ public class FXMLDocumentController implements Initializable {
         @FXML public MenuButton device;
        @FXML public TableColumn<IPPacket,String> source;
        @FXML public TableView <IPPacket> table;
+        Networkproj mypcap = new Networkproj();
      public void loginButtonPress(ActionEvent event)
  {
-      Networkproj mypcap = new Networkproj();
+     
         mypcap.ListInterfaces();
         mypcap.ChooseInterface();
         mypcap.CapturePackets();
  
  }
+     public void stopCapture(ActionEvent event)
+     {
+         Networkproj.CaptureState=false;
+     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
