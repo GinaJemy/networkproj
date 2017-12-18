@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -31,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
        @FXML public TableColumn <IPPacket,String> info;
        @FXML public TableColumn <IPPacket,String> protocol;
        @FXML public TableColumn <IPPacket,Integer> no;
+       @FXML public Button start;
 EventHandler<ActionEvent> action = changeTabPlacement();
 SniffingThread s =new SniffingThread();
         String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
@@ -77,8 +79,9 @@ SniffingThread s =new SniffingThread();
      private EventHandler<ActionEvent> changeTabPlacement() {
          return (ActionEvent event) -> {
              MenuItem mItem = (MenuItem) event.getSource();
-             String t = mItem.getText();
+             String t = mItem.getText().toString();
              s.ChooseInterface(t);
+             device.setText(t);
          };
     }
 }
