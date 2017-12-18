@@ -16,8 +16,8 @@
           <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
             <TableColumn fx:id="source" prefWidth="167.0" text="Source" />
             <TableColumn fx:id="destination" minWidth="0.0" prefWidth="126.0" text="Destination" />
-            <TableColumn fx:id="protocole" minWidth="7.0" prefWidth="109.0" text="protocole" />
-            <TableColumn fx:id="lenght" prefWidth="125.0" text="Lenght" />
+            <TableColumn fx:id="protocol" minWidth="7.0" prefWidth="109.0" text="protocol" />
+            <TableColumn fx:id="length" prefWidth="125.0" text="Length" />
             <TableColumn fx:id="info" prefWidth="397.0" text="Info" />
         </columns>
       </TableView>

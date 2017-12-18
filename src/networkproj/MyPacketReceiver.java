@@ -37,6 +37,7 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
             {
                 //not very useful
                 int p=ippkt.protocol;
+                
                 String proto=protocoll[p];
                 if(proto.equalsIgnoreCase("TCP"))
                 {

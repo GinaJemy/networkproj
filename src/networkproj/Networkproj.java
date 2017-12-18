@@ -77,6 +77,7 @@ public class Networkproj extends Application {
      void CapturePackets()
      {
          MyPacketReceiver.capturedPackets.clear();
+         packets.clear();
          CaptureState = true;
           new Thread(new Runnable() {
              @Override
