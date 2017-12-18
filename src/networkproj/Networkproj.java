@@ -24,7 +24,7 @@ public class Networkproj extends Application {
     JpcapCaptor CAP;
     int index;
     public static boolean CaptureState=false;
-    public static ObservableList <String/*replace with packet object */> packets=FXCollections.observableArrayList();
+    public static ObservableList <IPPacket> packets=FXCollections.observableArrayList();
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));

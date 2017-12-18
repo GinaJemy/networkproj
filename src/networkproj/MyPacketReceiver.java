@@ -5,6 +5,7 @@
  */
 package networkproj;
 import java.util.ArrayList;
+import javafx.application.Platform;
 import jpcap.packet.*;
 import jpcap.*;
 import javax.xml.bind.DatatypeConverter;
@@ -19,7 +20,9 @@ String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT
     
     public void receivePacket(Packet packet) {
         IPPacket ippkt=(IPPacket)packet;
-        capturedPackets.add(ippkt);
+         Platform.runLater(() ->  
+        capturedPackets.add(ippkt));
+         
         
         
          System.out.println(packet.toString());
