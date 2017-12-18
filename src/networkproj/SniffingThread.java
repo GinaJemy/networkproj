@@ -5,6 +5,9 @@
  */
 package networkproj;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.MenuItem;
 import jpcap.JpcapCaptor;
 import jpcap.NetworkInterface;
 import jpcap.NetworkInterfaceAddress;
@@ -22,17 +25,19 @@ NetworkInterface [] NETWORK_INTERFACES;
     public SniffingThread() {
         
     }
-    void ListInterfaces()
+ObservableList<MenuItem> ListInterfaces()
     {
+        ObservableList<MenuItem> m=FXCollections.observableArrayList();
         NETWORK_INTERFACES = JpcapCaptor.getDeviceList();
        for(int i=0;i<NETWORK_INTERFACES.length;i++)
-       {
+       { 
            System.out.println(NETWORK_INTERFACES[i].name+" "+NETWORK_INTERFACES[i].description+" "+NETWORK_INTERFACES[i].datalink_name+" "+NETWORK_INTERFACES[i].datalink_description);
            //byte[]R= NETWORK_INTERFACES[i].mac_address;
            System.out.println("MAC address ");
            for(byte X: NETWORK_INTERFACES[i].mac_address)
            System.out.print(Integer.toHexString(X&0xff)+":");
            System.out.println();
+           m.add(new MenuItem(NETWORK_INTERFACES[i].description));
            
            NetworkInterfaceAddress [] INT =NETWORK_INTERFACES[i].addresses;
            System.out.println("IP:" +INT[i].address);
@@ -40,11 +45,18 @@ NetworkInterface [] NETWORK_INTERFACES;
            System.out.println("broadcast:" +INT[i].broadcast);
            
        }
+       return m;
       
 }
-    void ChooseInterface()
+    void ChooseInterface(String d)
        {
-           index=0;
+           int i;
+           for( i=0;i<NETWORK_INTERFACES.length;i++)
+       { 
+           if(d.equals(NETWORK_INTERFACES[i].description));
+           break;
+       }
+           index=i;
             //todo save index of interface and make sure it is a valid number
        }
      void CapturePackets()

@@ -6,6 +6,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,7 +18,8 @@ import jpcap.*;
 import jpcap.packet.*;
 
 public class FXMLDocumentController implements Initializable {
-    
+                     public   ObservableList<MenuItem> m=FXCollections.observableArrayList();
+
     public static ObservableList <IPPacket> packets=FXCollections.observableArrayList();
    public static  MenuItem wifi=new MenuItem("wifi");
       public  MenuItem eth=new MenuItem("ethernet");
@@ -29,25 +31,27 @@ public class FXMLDocumentController implements Initializable {
        @FXML public TableColumn <IPPacket,String> info;
        @FXML public TableColumn <IPPacket,String> protocol;
        @FXML public TableColumn <IPPacket,Integer> no;
-
+EventHandler<ActionEvent> action = changeTabPlacement();
 SniffingThread s =new SniffingThread();
         String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
      public void loginButtonPress(ActionEvent event)
  {
-     s.ListInterfaces();
-     s.ChooseInterface();
+   
      s.CapturePackets();
-     /*   ListInterfaces();
-        ChooseInterface();
-        CapturePackets();*/
+    
  
  }
      public void stopCapture(ActionEvent event)
      {
          s.stop();
-        // CaptureState=false;
-     //    captureThread.stop();
-         //captureThread.interrupt();
+        
+     }
+    public void setaction()
+     {
+           for(int i=0;i<m.size();i++)
+           {
+               m.get(i).setOnAction(action);
+           }
      }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,9 +64,21 @@ SniffingThread s =new SniffingThread();
          length.setCellValueFactory(e->new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
 
     protocol.setCellValueFactory(e->new ReadOnlyStringWrapper(protocoll[e.getValue().protocol]));
+     m.addAll(s.ListInterfaces());
+         
+        device.getItems().addAll(m);
+        setaction();
                 table.setItems(packets);
                 //this is made for only colum once u add objects in the observable list the table will update itself automatically
                 // ladies and gentlemen we are highly depressed people i don't why i am wiritng this right now bas it seems funny anyway 
                 //good bye
+    }
+
+     private EventHandler<ActionEvent> changeTabPlacement() {
+         return (ActionEvent event) -> {
+             MenuItem mItem = (MenuItem) event.getSource();
+             String t = mItem.getText();
+             s.ChooseInterface(t);
+         };
     }
 }
