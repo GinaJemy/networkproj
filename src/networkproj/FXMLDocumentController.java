@@ -38,9 +38,9 @@ SniffingThread s =new SniffingThread();
         String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
      public void loginButtonPress(ActionEvent event)
  {
-   
+       
+
      s.CapturePackets();
-    
  
  }
      public void stopCapture(ActionEvent event)
@@ -53,6 +53,7 @@ SniffingThread s =new SniffingThread();
            for(int i=0;i<m.size();i++)
            {
                m.get(i).setOnAction(action);
+               System.out.println("action on "+ m.get(i).getText());
            }
      }
     @Override
@@ -67,21 +68,32 @@ SniffingThread s =new SniffingThread();
 
     protocol.setCellValueFactory(e->new ReadOnlyStringWrapper(protocoll[e.getValue().protocol]));
      m.addAll(s.ListInterfaces());
-         
+                 setaction();
+
         device.getItems().addAll(m);
-        setaction();
                 table.setItems(packets);
-                //this is made for only colum once u add objects in the observable list the table will update itself automatically
-                // ladies and gentlemen we are highly depressed people i don't why i am wiritng this right now bas it seems funny anyway 
-                //good bye
+               
     }
 
      private EventHandler<ActionEvent> changeTabPlacement() {
-         return (ActionEvent event) -> {
-             MenuItem mItem = (MenuItem) event.getSource();
-             String t = mItem.getText().toString();
-             s.ChooseInterface(t);
-             device.setText(t);
+         return new EventHandler<ActionEvent>() {
+             @Override
+             public void handle(ActionEvent event) {
+                 MenuItem mItem = (MenuItem) event.getSource();
+                 setindex(mItem);
+                 device.setText(mItem.getText());
+               
+             }
          };
     }
+     public void setindex(MenuItem me)
+     {
+         int i;
+          for(i=0;i<m.size();i++)
+           {
+               if(m.get(i).equals(me))
+                       break;
+           }
+          s.ChooseInterface(i);     
+     }
 }

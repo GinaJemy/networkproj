@@ -48,20 +48,16 @@ ObservableList<MenuItem> ListInterfaces()
        return m;
       
 }
-    void ChooseInterface(String d)
+    public void ChooseInterface(int  i)
        {
-           int i;
-           for( i=0;i<NETWORK_INTERFACES.length;i++)
-       { 
-           if(d.equals(NETWORK_INTERFACES[i].description));
-           break;
-       }
+          
            index=i;
             //todo save index of interface and make sure it is a valid number
        }
      void CapturePackets()
      {
          //MyPacketReceiver.capturedPackets.clear();
+         System.out.println("this is i"+index);
          packets.clear();
           captureThread = new Thread(new Runnable() {
              @Override
