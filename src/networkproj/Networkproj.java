@@ -17,27 +17,28 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jpcap.packet.*;
 import jpcap.*;
+
 /**
  *
  * @author Gina Salib
  */
 public class Networkproj extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Scene.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                try{
+                try {
                     SniffingThread.captureThread.stop();
                     stop();
-                }catch(Exception e){
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -50,6 +51,5 @@ public class Networkproj extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
+
 }
