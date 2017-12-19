@@ -20,7 +20,7 @@ import static networkproj.FXMLDocumentController.packets;
 public class SniffingThread {
 NetworkInterface [] NETWORK_INTERFACES;
     JpcapCaptor CAP;
-    int index;
+    int index=-1;
     Thread captureThread;
     public SniffingThread() {
         
@@ -54,6 +54,10 @@ ObservableList<MenuItem> ListInterfaces()
            index=i;
             //todo save index of interface and make sure it is a valid number
        }
+    int getindex()
+    {
+        return index;
+    }
      void CapturePackets()
      {
          //MyPacketReceiver.capturedPackets.clear();

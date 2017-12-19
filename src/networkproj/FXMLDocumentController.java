@@ -39,8 +39,14 @@ SniffingThread s =new SniffingThread();
      public void loginButtonPress(ActionEvent event)
  {
        
-
+if(s.getindex()==-1)
+{
+    return;
+}
+else{
+    start.setDisable(true);
      s.CapturePackets();
+}
  
  }
      public void stopCapture(ActionEvent event)

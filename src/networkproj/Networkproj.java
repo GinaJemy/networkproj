@@ -29,14 +29,6 @@ public class Networkproj extends Application {
         
         stage.setScene(scene);
         stage.show();
-      /*  Scanner sc = new Scanner(System.in);
-        Networkproj mypcap = new Networkproj();
-        mypcap.ListInterfaces();
-        mypcap.ChooseInterface();
-        mypcap.CapturePackets();
-        if (sc.nextInt()==1)
-            CaptureState=false;
-        */
     }
 
     /**
