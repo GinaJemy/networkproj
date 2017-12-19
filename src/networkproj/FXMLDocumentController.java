@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,6 +33,9 @@ public class FXMLDocumentController implements Initializable {
     public ObservableList<MenuItem> m = FXCollections.observableArrayList();
     public ObservableList<IPPacket> temp=FXCollections.observableArrayList();
     public static ObservableList<IPPacket> packets = FXCollections.observableArrayList();
+ public static ArrayList <Packet> pac = new ArrayList<Packet>();
+     
+       @FXML public Button load;
 
     @FXML
     public MenuButton device;
@@ -48,7 +52,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public TableColumn<IPPacket, String> protocol;
     @FXML
-    public TableColumn<IPPacket, Integer> no;
+    public TableColumn<IPPacket, Number> no;
     @FXML
     public TableColumn<IPPacket, String> time;
     @FXML
@@ -109,14 +113,6 @@ else{
     }
 
 
-    public static ArrayList <Packet> pac = new ArrayList<Packet>();
-     
-       @FXML public Button load;
-
-    
-    
-   
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -127,9 +123,11 @@ else{
         source.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().src_ip.toString()));
         destination.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().dst_ip.toString()));
         info.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().toString()));
-
         length.setCellValueFactory(e -> new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
         time.setCellValueFactory(e -> new ReadOnlyStringWrapper((new Date()).toString()));
+no.setCellValueFactory(column-> {
+            return new ReadOnlyObjectWrapper<Number>(table.getItems().indexOf(column.getValue()));
+        });
 
         protocol.setCellValueFactory(e -> new ReadOnlyStringWrapper(protocoll[e.getValue().protocol]));
         m.addAll(s.ListInterfaces());

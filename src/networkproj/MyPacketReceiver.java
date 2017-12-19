@@ -14,8 +14,9 @@ import javax.xml.bind.DatatypeConverter;
  * @author Gina Salib
  */
 public class MyPacketReceiver implements PacketReceiver{
+        
+
     @Override
-    
     public void receivePacket(Packet packet) {
        
          System.out.println(packet.toString());
@@ -33,6 +34,7 @@ public class MyPacketReceiver implements PacketReceiver{
         FXMLDocumentController.packets.add(ippkt));
                 int p=ippkt.protocol;
                 FXMLDocumentController.pac.add(packet);
+                
                 String proto=FXMLDocumentController.protocoll[p];
                 if(proto.equalsIgnoreCase("TCP"))
                 {
