@@ -28,7 +28,7 @@
       <Button fx:id="addfiler" layoutX="692.0" layoutY="14.0" mnemonicParsing="false" text="FIlter" />
       <Button fx:id="save" layoutX="929.0" layoutY="14.0" mnemonicParsing="false" onAction="#savepac" text="save" />
       <Button layoutX="765.0" layoutY="14.0" mnemonicParsing="false" text="remove filter" />
-      <Button layoutX="993.0" layoutY="14.0" mnemonicParsing="false" text="Load" />
+      <Button fx:id="load" layoutX="993.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadpac" text="Load" />
       <TextArea fx:id="hex" layoutX="-3.0" layoutY="586.0" prefHeight="200.0" prefWidth="1075.0" />
    </children>
 </AnchorPane>
