@@ -52,6 +52,7 @@ else{
      public void stopCapture(ActionEvent event)
      {
          s.stop();
+         start.setDisable(false);
         
      }
     public void setaction()
