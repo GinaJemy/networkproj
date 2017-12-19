@@ -9,10 +9,12 @@ import java.util.Scanner;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import jpcap.packet.*;
 import jpcap.*;
 /**
@@ -29,6 +31,17 @@ public class Networkproj extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                try{
+                    SniffingThread.captureThread.stop();
+                    stop();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     /**

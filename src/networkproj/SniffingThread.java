@@ -21,7 +21,7 @@ public class SniffingThread {
 NetworkInterface [] NETWORK_INTERFACES;
     JpcapCaptor CAP;
     int index=-1;
-    Thread captureThread;
+    public static Thread captureThread;
     public SniffingThread() {
         
     }
