@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="746.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="networkproj.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="networkproj.FXMLDocumentController">
   <children>
       <Button fx:id="start" layoutX="209.0" layoutY="14.0" mnemonicParsing="false" onAction="#loginButtonPress" text="Start" />
       <Button fx:id="stop" layoutX="281.0" layoutY="14.0" mnemonicParsing="false" onAction="#stopCapture" text="Stop" />
@@ -22,9 +22,13 @@
         </columns>
       </TableView>
       <TreeView fx:id="tree" layoutX="-3.0" layoutY="354.0" prefHeight="206.0" prefWidth="1075.0" />
-      <TextField layoutX="511.0" layoutY="14.0" />
-      <Label layoutX="451.0" layoutY="19.0" prefHeight="21.0" prefWidth="45.0" text="Filter" />
+      <TextField layoutX="491.0" layoutY="14.0" />
+      <Label layoutX="433.0" layoutY="19.0" prefHeight="21.0" prefWidth="45.0" text="Filter" />
       <MenuButton fx:id="device" layoutX="42.0" layoutY="14.0" maxWidth="150.0" mnemonicParsing="false" text="choose device" />
-      <Button layoutX="728.0" layoutY="14.0" mnemonicParsing="false" text="FIlter" />
+      <Button fx:id="addfiler" layoutX="692.0" layoutY="14.0" mnemonicParsing="false" text="FIlter" />
+      <Button fx:id="save" layoutX="929.0" layoutY="14.0" mnemonicParsing="false" text="save" />
+      <Button layoutX="765.0" layoutY="14.0" mnemonicParsing="false" text="remove filter" />
+      <Button layoutX="993.0" layoutY="14.0" mnemonicParsing="false" text="Load" />
+      <TextArea fx:id="hex" layoutX="-3.0" layoutY="586.0" prefHeight="200.0" prefWidth="1075.0" />
    </children>
 </AnchorPane>
