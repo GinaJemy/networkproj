@@ -22,8 +22,7 @@ public class FXMLDocumentController implements Initializable {
                      public   ObservableList<MenuItem> m=FXCollections.observableArrayList();
 
     public static ObservableList <IPPacket> packets=FXCollections.observableArrayList();
-   public static  MenuItem wifi=new MenuItem("wifi");
-      public  MenuItem eth=new MenuItem("ethernet");
+
         @FXML public MenuButton device;
        @FXML public TableColumn<IPPacket,String> source;
        @FXML public TableView <IPPacket> table;
