@@ -32,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
        @FXML public TableColumn <IPPacket,String> info;
        @FXML public TableColumn <IPPacket,String> protocol;
        @FXML public TableColumn <IPPacket,Integer> no;
+       @FXML public TableColumn <IPPacket,String> time;
        @FXML public Button start;
 EventHandler<ActionEvent> action = changeTabPlacement();
 SniffingThread s =new SniffingThread();
@@ -77,6 +78,7 @@ else{
 
 
          length.setCellValueFactory(e->new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
+         time.setCellValueFactory(e->new ReadOnlyStringWrapper((Long.toString(e.getValue().sec))));
 
     protocol.setCellValueFactory(e->new ReadOnlyStringWrapper(protocoll[e.getValue().protocol]));
      m.addAll(s.ListInterfaces());
