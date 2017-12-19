@@ -17,9 +17,6 @@ public class MyPacketReceiver implements PacketReceiver{
     @Override
     
     public void receivePacket(Packet packet) {
-        
-         
-        
        
          System.out.println(packet.toString());
          System.out.println("header" + DatatypeConverter.printHexBinary(packet.header));

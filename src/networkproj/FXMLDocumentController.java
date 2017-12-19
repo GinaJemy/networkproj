@@ -35,7 +35,7 @@ public class FXMLDocumentController implements Initializable {
        @FXML public Button start;
 EventHandler<ActionEvent> action = changeTabPlacement();
 SniffingThread s =new SniffingThread();
-        String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
+        public static String protocoll[] = {"HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN", "NV2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "mux"};
      public void loginButtonPress(ActionEvent event)
  {
        
