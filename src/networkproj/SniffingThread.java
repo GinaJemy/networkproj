@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.MenuItem;
 import jpcap.JpcapCaptor;
+import jpcap.JpcapWriter;
 import jpcap.NetworkInterface;
 import jpcap.NetworkInterfaceAddress;
 import static networkproj.FXMLDocumentController.packets;
@@ -19,11 +20,14 @@ import static networkproj.FXMLDocumentController.packets;
  */
 public class SniffingThread {
 
-    NetworkInterface[] NETWORK_INTERFACES;
-    JpcapCaptor CAP;
-    int index = -1;
-    public static Thread captureThread;
+    
 
+
+NetworkInterface [] NETWORK_INTERFACES;
+    public static JpcapCaptor CAP;
+
+    int index=-1;
+    public static Thread captureThread;
     public SniffingThread() {
 
     }
@@ -92,4 +96,10 @@ public class SniffingThread {
         captureThread.stop();
     }
 
+
+
+    public JpcapCaptor getcap()
+    {
+        return CAP;
+    }
 }

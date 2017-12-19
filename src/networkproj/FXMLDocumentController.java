@@ -1,8 +1,10 @@
 package networkproj;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
@@ -67,27 +69,35 @@ public class FXMLDocumentController implements Initializable {
 
     public void loginButtonPress(ActionEvent event) {
 
-        if (s.getindex() == -1) {
-            return;
-        } else {
-            start.setDisable(true);
-            s.CapturePackets();
-            save.setDisable(true);
-            addfilter.setDisable(true);
-        }
+              
+if(s.getindex()==-1)
+{
+    return;
+}
+else{
+    start.setDisable(true);
+     s.CapturePackets();
+     save.setDisable(true);
+     load.setDisable(true);
+                 addfilter.setDisable(true);
+
+}
 
     }
 
     public void stopCapture(ActionEvent event) {
-        if (s.getindex() == -1) {
-            return;
-        } else {
-            s.stop();
-            start.setDisable(false);
-            save.setDisable(false);
+        if(s.getindex()==-1)
+         {
+             return;
+         }
+         else{
+         s.stop();
+         start.setDisable(false);
+         save.setDisable(false);
+         load.setDisable(false);
                         addfilter.setDisable(false);
 
-        }
+         }
 
     }
 
@@ -97,6 +107,15 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("action on " + m.get(i).getText());
         }
     }
+
+
+    public static ArrayList <Packet> pac = new ArrayList<Packet>();
+     
+       @FXML public Button load;
+
+    
+    
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -240,4 +259,27 @@ rfilter.setDisable(true);
         addfilter.setDisable(false);
 
     }
+
+
+     public void savepac() throws IOException
+     {
+                         JpcapWriter j = JpcapWriter.openDumpFile(s.getcap(),"test.pcap");
+                         for(int i=0;i<pac.size();i++)
+                         {
+                             j.writePacket(pac.get(i));
+                         }
+
+     }
+     public void loadpac() throws IOException
+     {
+         packets.clear();
+         JpcapCaptor captor=JpcapCaptor.openFile("test.pcap");
+         while(true)
+         {
+             Packet packet=captor.getPacket();
+             if(packet==null||packet==Packet.EOF)break;
+             if(packet instanceof IPPacket)
+                 packets.add((IPPacket)packet);
+         }
+     }
 }
