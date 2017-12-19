@@ -32,7 +32,7 @@ public class MyPacketReceiver implements PacketReceiver{
                  Platform.runLater(() ->  
         FXMLDocumentController.packets.add(ippkt));
                 int p=ippkt.protocol;
-                
+                FXMLDocumentController.pac.add(packet);
                 String proto=FXMLDocumentController.protocoll[p];
                 if(proto.equalsIgnoreCase("TCP"))
                 {

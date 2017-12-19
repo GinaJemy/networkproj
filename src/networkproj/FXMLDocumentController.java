@@ -1,6 +1,8 @@
 package networkproj;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -21,9 +23,8 @@ import jpcap.packet.*;
 
 public class FXMLDocumentController implements Initializable {
                      public   ObservableList<MenuItem> m=FXCollections.observableArrayList();
-
     public static ObservableList <IPPacket> packets=FXCollections.observableArrayList();
-
+    public static ArrayList <Packet> pac = new ArrayList<Packet>();
         @FXML public MenuButton device;
        @FXML public TableColumn<IPPacket,String> source;
        @FXML public TableView <IPPacket> table;
@@ -116,5 +117,14 @@ else{
                        break;
            }
           s.ChooseInterface(i);     
+     }
+     public void savepac() throws IOException
+     {
+                         JpcapWriter j = JpcapWriter.openDumpFile(s.getcap(),"test.pcap");
+                         for(int i=0;i<pac.size();i++)
+                         {
+                             j.writePacket(pac.get(i));
+                         }
+
      }
 }
