@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
@@ -124,7 +125,8 @@ else{
         destination.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().dst_ip.toString()));
         info.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().toString()));
         length.setCellValueFactory(e -> new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
-        time.setCellValueFactory(e -> new ReadOnlyStringWrapper((new Date()).toString()));
+        time.setCellValueFactory(e -> new ReadOnlyStringWrapper(new Date(e.getValue().sec*10000).toString()));
+        
 no.setCellValueFactory(column-> {
             return new ReadOnlyObjectWrapper<Number>(table.getItems().indexOf(column.getValue()));
         });
