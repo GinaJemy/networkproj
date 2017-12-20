@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
@@ -128,7 +129,8 @@ stop.setDisable(true);
         destination.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().dst_ip.toString()));
         info.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().toString()));
         length.setCellValueFactory(e -> new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
-        time.setCellValueFactory(e -> new ReadOnlyStringWrapper((new Date()).toString()));
+        time.setCellValueFactory(e -> new ReadOnlyStringWrapper(new Date(e.getValue().sec*1000).toString()));
+        
 no.setCellValueFactory(column-> {
             return new ReadOnlyObjectWrapper<Number>(pac.indexOf(column.getValue()));
         });
@@ -154,7 +156,8 @@ rfilter.setDisable(true);
                     if (pkt.dont_frag) {
                         information = information.concat("dft bi is set. packet will not be fragmented \n");
 
-                    } else {
+                    } 
+                    else {
                         information = information.concat("dft bi is not set. packet will  be fragmented \n");
                     }
                     information = information.concat(" \n destination ip is :" + pkt.dst_ip);
