@@ -44,11 +44,16 @@ NetworkInterface [] NETWORK_INTERFACES;
             }
             System.out.println();
             m.add(new MenuItem(NETWORK_INTERFACES[i].description));
-
+try{
             NetworkInterfaceAddress[] INT = NETWORK_INTERFACES[i].addresses;
             System.out.println("IP:" + INT[i].address);
             System.out.println("Subnet:" + INT[i].subnet);
             System.out.println("broadcast:" + INT[i].broadcast);
+}
+catch(Exception ArrayIndexOutOfBoundsException)
+{
+    System.out.println("array out of boundary");
+}
 
         }
         return m;
