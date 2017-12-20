@@ -128,7 +128,7 @@ else{
         time.setCellValueFactory(e -> new ReadOnlyStringWrapper(new Date(e.getValue().sec*1000).toString()));
         
 no.setCellValueFactory(column-> {
-            return new ReadOnlyObjectWrapper<Number>(table.getItems().indexOf(column.getValue()));
+            return new ReadOnlyObjectWrapper<Number>(pac.indexOf(column.getValue()));
         });
 
         protocol.setCellValueFactory(e -> new ReadOnlyStringWrapper(protocoll[e.getValue().protocol]));
@@ -278,7 +278,7 @@ rfilter.setDisable(true);
          while(true)
          {
              Packet packet=captor.getPacket();
-             if(packet==null||packet==Packet.EOF)break;
+             if(packet==null)break;
              if(packet instanceof IPPacket)
                  packets.add((IPPacket)packet);
          }
