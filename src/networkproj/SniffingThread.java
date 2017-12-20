@@ -22,7 +22,6 @@ public class SniffingThread {
 
     
 
-
 NetworkInterface [] NETWORK_INTERFACES;
     public static JpcapCaptor CAP;
 
@@ -52,7 +51,7 @@ try{
 }
 catch(Exception ArrayIndexOutOfBoundsException)
 {
-    System.out.println("array out of boundary");
+    System.out.println("no ip");
 }
 
         }
