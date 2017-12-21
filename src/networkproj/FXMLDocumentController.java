@@ -141,11 +141,11 @@ stop.setDisable(true);
         stop.setDisable(true);
         source.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().src_ip.toString()));
         destination.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().dst_ip.toString()));
-        info.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().toString()));
+        info.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().src_ip.toString()+" ->"+ e.getValue().dst_ip.toString()+"  Length :"+Integer.toString(e.getValue().length)+"  Hop Limit :"+e.getValue().hop_limit));
         length.setCellValueFactory(e -> new ReadOnlyStringWrapper((Short.toString(e.getValue().length))));
         time.setCellValueFactory(e -> new ReadOnlyStringWrapper(new Date(e.getValue().sec*1000).toString()));
         
-no.setCellValueFactory(column-> {
+        no.setCellValueFactory(column-> {
             return new ReadOnlyObjectWrapper<Number>(pac.indexOf(column.getValue()));
         });
 
@@ -155,7 +155,7 @@ no.setCellValueFactory(column-> {
 
         device.getItems().addAll(m);
         table.setItems(packets);
-rfilter.setDisable(true);
+        rfilter.setDisable(true);
 
         table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<IPPacket>() {
             @Override
@@ -166,62 +166,56 @@ rfilter.setDisable(true);
                     hex.setText(DatatypeConverter.printHexBinary(pkt.header) + "\n" + DatatypeConverter.printHexBinary(pkt.data));
 
                     String information = "";
-                    information = information.concat("IP Packet : \n");
-                    if (pkt.dont_frag) {
-                        information = information.concat("dft bi is set. packet will not be fragmented \n");
-
-                    } 
-                    else {
-                        information = information.concat("dft bi is not set. packet will  be fragmented \n");
-                    }
-                    information = information.concat(" \n destination ip is :" + pkt.dst_ip);
-                    information = information.concat("\n this is source ip :" + pkt.src_ip);
-                    information = information.concat("\n this is hop limit :" + pkt.hop_limit);
-                    information = information.concat(" \n this is identification field  :" + pkt.ident);
-                    information = information.concat(" \npacket length :" + pkt.length);
-                    information = information.concat("\n packet priority  :" + (int) pkt.priority);
-                    information = information.concat("\n type of service field" + pkt.rsv_tos);
-                    if (pkt.r_flag) {
-                        information = information.concat("\n releiable transmission");
-                    } else {
-                        information = information.concat("\n not reliable");
-                    }
-                    information = information.concat("\n protocol version is : " + (int) pkt.version);
-                    information = information.concat("\n flow label field" + pkt.flow_label);
-                    information = information.concat("\n  \n Ethernet packet");
-
+                    information = information.concat("Internet Protocol Version "+pkt.version);
+                    information = information.concat(" , Src  : " + pkt.src_ip);
+                    information = information.concat(" , Dst  : " + pkt.dst_ip +"\n");
+                    information = information.concat(" \nTotal Length : " + pkt.length);
+                    information = information.concat(" \nIdentification : " + pkt.ident);
+                    information = information.concat(" \nFlags");
+                    information = information.concat("\nReserved Bit : "+pkt.r_flag);
+                    information = information.concat("\nR Flag : "+pkt.r_flag);   
+                    information = information.concat("\nDon't Fragment : "+pkt.dont_frag);
+                    information = information.concat("\nMore Fragments : "+pkt.more_frag);
+                    information = information.concat("\nFragment offset : " + pkt.offset);
+                    information = information.concat("\nHop limit : " + pkt.hop_limit);                  
+                    information = information.concat("\nPacket priority  : " + (int) pkt.priority);
+                    information = information.concat("\nType of Service : " + pkt.rsv_tos);                                         
+                    information = information.concat("\nProtocol : "+protocoll[pkt.protocol]+ " ("+pkt.protocol+")");
+                    information = information.concat("\nProtocol Version : " + (int) pkt.version);
+                    information = information.concat("\nSource  : " + pkt.src_ip);
+                    information = information.concat("\nDestination  : " + pkt.dst_ip );
+                    
                     EthernetPacket ept = (EthernetPacket) pkt.datalink;
-                    information = information.concat("\n this is destination mac address :" + ept.getDestinationAddress());
-                    information = information.concat("\n this is source mac address" + ept.getSourceAddress());
+                    information = information.concat("\n  \n Ethernet ");                    
+                    information = information.concat("\nDestination MAC address : " + ept.getDestinationAddress());
+                    information = information.concat("\nSource MAC address : " + ept.getSourceAddress());
+                    information = information.concat("\nType : " + ept.frametype);
+                    
                     if (protocoll[pkt.protocol].equalsIgnoreCase("TCP")) {
-
-                        information += " \n\n this is TCP packet";
                         TCPPacket tp = (TCPPacket) pkt;
-                        information += "this is destination port of tcp :" + tp.dst_port;
-                        if (tp.ack) {
-                            information += "\n" + "this is an acknowledgement";
-                        } else {
-                            information += "this is not an acknowledgment packet";
-                        }
-
-                        if (tp.rst) {
-                            information += "reset connection ";
-                        }
-                        information += " \n protocol version is :" + tp.version;
-                        information += "\n this is destination ip " + tp.dst_ip;
-                        information += "this is source ip" + tp.src_ip;
-                        if (tp.fin) {
-                            information += "sender does not have more data to transfer";
-                        }
-                        if (tp.syn) {
-                            information += "\n request for connection";
-                        }
+                        information += " \n\n Transmission Control Protocol, Src Port : "+tp.src_port+ " , Dst Port : "+tp.dst_port+" "+" ,Seq :"+tp.sequence+" , ACK : "+tp.ack;
+                        information += "\nSource Port : " + tp.src_port;
+                        information += "\nDestination Port : " + tp.dst_port;
+                        information+="\nSequence Number :"+tp.sequence;
+                        information+="\nAcknowledgement Number :"+tp.ack_num;
+                        information+="\nFlags :";
+                        information+="\nUrgent : "+tp.urg; 
+                        information+="\nAcknowledgement : "+tp.ack;
+                        information+="\nPush : "+tp.psh;                
+                        information+="\nReset : "+tp.rst;     
+                        information+="\nSyn : "+tp.syn;
+                        information+="\nFin : "+tp.fin;
+                        information+="\nWindow Size : "+tp.window;
+                        if(tp.src_port==80||tp.dst_port==80)
+                            information+="\nHyperText Transfer Protocol";
                     }
                     if (protocoll[pkt.protocol].equalsIgnoreCase("UDP")) {
                         UDPPacket pac = (UDPPacket) pkt;
-                        information += "\n\n this is udp packet";
-                        information += "\nthis is source port : " + pac.src_port;
-                        information += "\nthis is destination port : " + pac.dst_port;
+                        information += "\n\n User Datagram Protocol";
+                        information += "\nSource Port : " + pac.src_port;
+                        information += "\nDestination Port : " + pac.dst_port;
+                        information += "\nLength : "+pac.length;
+                        
                     }
                     detail.setText(information);
                 }
@@ -292,13 +286,18 @@ rfilter.setDisable(true);
      public void loadpac() throws IOException
      {
          packets.clear();
+         pac.clear();
+
          JpcapCaptor captor=JpcapCaptor.openFile("test.pcap");
          while(true)
          {
              Packet packet=captor.getPacket();
-             if(packet==null)break;
+             if(packet==null||packet==Packet.EOF)break;
              if(packet instanceof IPPacket)
+             {
                  packets.add((IPPacket)packet);
+                 pac.add((IPPacket)packet);
+             }
          }
      }
      
