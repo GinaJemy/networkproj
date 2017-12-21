@@ -10,7 +10,7 @@
   <children>
       <Button fx:id="start" layoutX="209.0" layoutY="14.0" mnemonicParsing="false" onAction="#loginButtonPress" text="Start" />
       <Button fx:id="stop" layoutX="281.0" layoutY="14.0" mnemonicParsing="false" onAction="#stopCapture" text="Stop" />
-      <TableView fx:id="table" layoutX="-3.0" layoutY="69.0" prefHeight="284.0" prefWidth="1075.0">
+      <TableView fx:id="table" layoutX="2.0" layoutY="67.0" prefHeight="284.0" prefWidth="1075.0">
         <columns>
           <TableColumn fx:id="no" prefWidth="75.0" text="No." />
           <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
@@ -28,7 +28,7 @@
       <Button fx:id="rfilter" layoutX="765.0" layoutY="14.0" mnemonicParsing="false" onAction="#removefilter" text="remove filter" />
       <Button fx:id="save" layoutX="929.0" layoutY="14.0" mnemonicParsing="false" onAction="#savepac" text="save" />
       <Button fx:id="load" layoutX="993.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadpac" text="Load" />
-      <TextArea fx:id="hex" layoutX="-3.0" layoutY="586.0" prefHeight="200.0" prefWidth="1075.0" />
-      <TextArea fx:id="detail" layoutX="3.0" layoutY="365.0" prefHeight="206.0" prefWidth="1072.0" />
+      <TextArea fx:id="hex" layoutX="-3.0" layoutY="586.0" prefHeight="213.0" prefWidth="1077.0" />
+      <TextArea fx:id="detail" layoutX="3.0" layoutY="365.0" prefHeight="207.0" prefWidth="1075.0" />
    </children>
 </AnchorPane>

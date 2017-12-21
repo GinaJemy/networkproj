@@ -35,6 +35,7 @@ public static boolean isSplashLoaded=false;
         stage.setScene(scene);
         stage.setTitle("Nader the dragon");
         stage.show();
+        stage.setResizable(false);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
