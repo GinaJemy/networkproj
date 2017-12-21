@@ -189,8 +189,15 @@ stop.setDisable(true);
                     information = information.concat("\n  \n Ethernet ");                    
                     information = information.concat("\nDestination MAC address : " + ept.getDestinationAddress());
                     information = information.concat("\nSource MAC address : " + ept.getSourceAddress());
-                    information = information.concat("\nType : " + ept.frametype);
-                    
+                    information = information.concat("\nType : " );
+                    if(ept.frametype==2048)
+                    {
+                        information+= "IPv4";
+                    }
+                    else
+                    {
+                        information+=ept.frametype;                        
+                    }
                     if (protocoll[pkt.protocol].equalsIgnoreCase("TCP")) {
                         TCPPacket tp = (TCPPacket) pkt;
                         information += " \n\n Transmission Control Protocol, Src Port : "+tp.src_port+ " , Dst Port : "+tp.dst_port+" "+" ,Seq :"+tp.sequence+" , ACK : "+tp.ack;
