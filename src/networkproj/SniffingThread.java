@@ -42,7 +42,7 @@ NetworkInterface [] NETWORK_INTERFACES;
                 System.out.print(Integer.toHexString(X & 0xff) + ":");
             }
             System.out.println();
-            m.add(new MenuItem(NETWORK_INTERFACES[i].description));
+            m.add(new MenuItem(NETWORK_INTERFACES[i].description+" "+NETWORK_INTERFACES[i].datalink_description));
 try{
             NetworkInterfaceAddress[] INT = NETWORK_INTERFACES[i].addresses;
             System.out.println("IP:" + INT[i].address);
