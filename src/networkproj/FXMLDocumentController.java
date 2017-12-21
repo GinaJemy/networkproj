@@ -292,7 +292,7 @@ stop.setDisable(true);
          while(true)
          {
              Packet packet=captor.getPacket();
-             if(packet==null||packet==Packet.EOF)break;
+             if(packet==null/*||packet==Packet.EOF*/)break;
              if(packet instanceof IPPacket)
              {
                  packets.add((IPPacket)packet);
