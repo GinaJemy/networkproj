@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.MenuItem;
 import jpcap.JpcapCaptor;
-import jpcap.JpcapWriter;
 import jpcap.NetworkInterface;
 import jpcap.NetworkInterfaceAddress;
 import static networkproj.FXMLDocumentController.packets;
@@ -40,13 +39,12 @@ NetworkInterface [] NETWORK_INTERFACES;
 
     }
 
-    ObservableList<MenuItem> ListInterfaces() {
+    public ObservableList<MenuItem> ListInterfaces() {
         ObservableList<MenuItem> m = FXCollections.observableArrayList();
         NETWORK_INTERFACES = JpcapCaptor.getDeviceList();
 
         for (int i = 0; i < NETWORK_INTERFACES.length; i++) {
             System.out.println(NETWORK_INTERFACES[i].name + " " + NETWORK_INTERFACES[i].description + " " + NETWORK_INTERFACES[i].datalink_name + " " + NETWORK_INTERFACES[i].datalink_description);
-            //byte[]R= NETWORK_INTERFACES[i].mac_address;
             System.out.println("MAC address ");
             for (byte X : NETWORK_INTERFACES[i].mac_address) {
                 System.out.print(Integer.toHexString(X & 0xff) + ":");
@@ -152,7 +150,7 @@ catch(Exception ArrayIndexOutOfBoundsException)
         }
         return theDriverName;
     }
-      private final static String trimOrDefault (String str, String def) {
+      private static String trimOrDefault (String str, String def) {
         str = (str == null) ? "" : str.trim();
         return str.isEmpty() ? def : str;
     }

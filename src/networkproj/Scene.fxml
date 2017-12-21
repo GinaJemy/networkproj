@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="800.0" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="networkproj.FXMLDocumentController">
   <children>
-      <Button fx:id="start" layoutX="209.0" layoutY="14.0" mnemonicParsing="false" onAction="#loginButtonPress" text="Start" />
+      <Button fx:id="start" layoutX="209.0" layoutY="14.0" mnemonicParsing="false" onAction="#startCapture" text="Start" />
       <Button fx:id="stop" layoutX="281.0" layoutY="14.0" mnemonicParsing="false" onAction="#stopCapture" text="Stop" />
       <TableView fx:id="table" layoutX="2.0" layoutY="67.0" prefHeight="284.0" prefWidth="1075.0">
         <columns>
